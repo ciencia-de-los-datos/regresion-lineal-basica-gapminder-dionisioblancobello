@@ -149,22 +149,22 @@ def pregunta_04():
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 53. El tamaño de la muestra de entrenamiento es del 80%
     (X_train, X_test, y_train, y_test,) = train_test_split(
-        ____,
-        ____,
-        test_size=____,
-        random_state=____,
+        X_fertility,
+        y_life,
+        test_size=0.2,
+        random_state=53,
     )
 
     # Cree una instancia del modelo de regresión lineal
-    linearRegression = ____
+    linearRegression = LinearRegression()
 
     # Entrene el clasificador usando X_train y y_train
-    ____.fit(____, ____)
+    linearRegression.fit(X_train, y_train)
 
     # Pronostique y_test usando X_test
-    y_pred = ____
+    y_pred = linearRegression.predict(X_test)
 
     # Compute and print R^2 and RMSE
     print("R^2: {:6.4f}".format(linearRegression.score(X_test, y_test)))
-    rmse = np.sqrt(____(____, ____))
+    rmse = np.sqrt(np.square(np.subtract(y_test,y_pred)).mean())
     print("Root Mean Squared Error: {:6.4f}".format(rmse))
